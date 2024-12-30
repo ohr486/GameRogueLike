@@ -18,8 +18,8 @@ pub fn player(ecs: &mut World, player_x: i32, player_y: i32) -> Entity {
         .build()
 }
 
-const MAX_MONSTERS : i32 = 4;
-const MAX_ITEMS : i32 = 2;
+const MAX_MONSTERS : i32 = 3; // 4
+const MAX_ITEMS : i32 = 2; // 2
 
 pub fn spawn_room(ecs: &mut World, room: &Rect) {
     let mut monster_spawn_points : Vec<usize> = Vec::new();
