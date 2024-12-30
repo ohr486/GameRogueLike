@@ -10,6 +10,7 @@ pub fn player(ecs: &mut World, player_x: i32, player_y: i32) -> Entity {
             glyph: rltk::to_cp437('@'),
             fg: RGB::named(rltk::YELLOW),
             bg: RGB::named(rltk::BLACK),
+            render_order: 0,
         })
         .with(Player{})
         .with(Viewshed{visible_tiles: Vec::new(), range: 8, dirty: true })
@@ -18,8 +19,8 @@ pub fn player(ecs: &mut World, player_x: i32, player_y: i32) -> Entity {
         .build()
 }
 
-const MAX_MONSTERS : i32 = 3; // 4
-const MAX_ITEMS : i32 = 2; // 2
+const MAX_MONSTERS : i32 = 4;
+const MAX_ITEMS : i32 = 2;
 
 pub fn spawn_room(ecs: &mut World, room: &Rect) {
     let mut monster_spawn_points : Vec<usize> = Vec::new();
@@ -100,6 +101,7 @@ fn monster<S: ToString>(
             glyph,
             fg: RGB::named(rltk::RED),
             bg: RGB::named(rltk::BLACK),
+            render_order: 1,
         })
         .with(Viewshed{visible_tiles: Vec::new(), range: 8, dirty: true})
         .with(Monster{})
@@ -117,6 +119,7 @@ fn health_potion(ecs: &mut World, x: i32, y: i32) {
             glyph: rltk::to_cp437('i'),
             fg: RGB::named(rltk::MAGENTA),
             bg: RGB::named(rltk::BLACK),
+            render_order: 2,
         })
         .with(Name{ name: "Health Potion".to_string() })
         .with(Item{})
